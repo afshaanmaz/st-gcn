@@ -12,7 +12,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.autograd import Variable
-
+import pdb
 
 def get_parser():
 
@@ -21,11 +21,11 @@ def get_parser():
         description='Spatial Temporal Graph Convolution Network')
     parser.add_argument(
         '--work-dir',
-        default='./work_dir/temp',
+        default='./work_dir/NTU-RGB-D_zero_shot_furtherest_neigh/xview/ST_GCN_exp1',
         help='the work folder for storing results')
     parser.add_argument(
         '--config',
-        default='./config/NTU-RGB-D/xview/ST_GCN.yaml',
+        default='./config/st_gcn/nturgbd-cross-view_zero_shot_furtherest_neigh/train.yaml', #NTU-RGB-D/xview/ST_GCN.yaml',
         help='path to the configuration file')
 
     # processor
@@ -34,7 +34,7 @@ def get_parser():
     parser.add_argument(
         '--save-score',
         type=str2bool,
-        default=False,
+        default=True,
         help='if ture, the classification score will be stored')
 
     # visulize and debug
@@ -281,6 +281,8 @@ class Processor():
         self.record_time()
         timer = dict(dataloader=0.001, model=0.001, statistics=0.001)
         for batch_idx, (data, label) in enumerate(loader):
+
+            #pdb.set_trace()    
 
             # get data
             data = Variable(
